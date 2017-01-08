@@ -13,10 +13,7 @@ app.get('/', function (req, res) {
     // res.sendFile( __dirname + "/" + "registration1.html" );
 })
 //tell the template engine
-
-app.get('/reg1_submit', function (req, res) {
-    console.log("inside submit");
-    var mysql = require('mysql');
+var mysql = require('mysql');
     var connection = mysql.createConnection({
         host: 'localhost',
         user: 'root',
@@ -24,6 +21,10 @@ app.get('/reg1_submit', function (req, res) {
         port : 3306, //port mysql
         database:'register'
     })
+
+app.get('/reg1_submit', function (req, res) {
+    console.log("inside submit");
+    
     var s1 = {emp_type:req.query.emp_type,ename:req.query.ename,fname:req.query.fname ,
         mname:req.query.mname,address: req.query.address,city: req.query.city,district: req.query.district
         ,state: req.query.state,pin: req.query.pin,email: req.query.email,dob: req.query.dob
