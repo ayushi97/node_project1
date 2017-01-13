@@ -11,10 +11,14 @@
             test = test.replace(/&#34;/g, '"');
             alert(test);
             test=JSON.parse(test);
-            alert(test.ename);
+            //test=JSON.stringify(test);
+            /*alert(test.sub_date);*/
 
             var flag="<%= prev%>";
             if(flag==1){
+                /*var subdate = new Date(test.sub_date).toISOString().substring(0, 10);
+                alert(subdate);
+                alert(test.sub_date);*/
                 $("#emp_type").val(test.emp_type);
                 $("#ename").val(test.ename);
                 $("#fname").val(test.fname);
@@ -25,30 +29,26 @@
                 $("#state").val(test.state);
                 $("#pin").val(test.pin);
                 $("#email").val(test.email);
+                /*$("#dob").val(test.dob);*/
                 $("#phone_no").val(test.phone_no);
                 $("#qualification").val(test.qualification);
                 $("#category").val(test.category);
                 $("#program").val(test.program);
+
+                /*$("#sub_date").val(subdate);*/
                 $("[name=medium]").val([test.medium]);
                 $("[name=area]").val([test.area]);
                 $("[name=gov_emp]").val([test.gov_emp]);
                 $("[name=gender]").val([test.gender]);
-                $("#submit").hide();
-                $("#update").show();
             }
-            if(flag==0){
-                $("#update").hide();
-            }
-
 
         });
-
 
     </script>
 </head>
 <body>
 <table>
-    <form method="get"  name="form1" id="form1">
+    <form method="get" name="form1" id="form1">
         <tr><td>Employee type</td>
             <td>
                 <select name="emp_type" id="emp_type">
@@ -58,34 +58,34 @@
                     <option value=3>others</option>
                 </select> </td></tr>
         <tr><td>Name:
-            </td><td><input type="text" name="ename" id="ename" ></td></tr>
+            </td><td><input type="text" name="ename" readonly id="ename" ></td></tr>
 
         <tr><td>Fathers name:
-            </td><td><input type="text" name="fname" id="fname" ></td></tr>
+            </td><td><input type="text" name="fname" readonly id="fname" ></td></tr>
 
         <tr><td>Mothers name:
-            </td><td><input type="text" name="mname" id="mname"></td></tr>
+            </td><td><input type="text" name="mname" readonly id="mname"></td></tr>
 
         <tr><td>Contact address:
-            </td><td><textarea rows="4" cols="50" name="address" id="address"></textarea></td></tr>
+            </td><td><textarea rows="4" cols="50" name="address" readonly id="address"></textarea></td></tr>
 
         <tr><td>City:
-            </td><td><input type="text" name="city" id="city"></td></tr>
+            </td><td><input type="text" name="city" readonly id="city"></td></tr>
 
         <tr><td>District:
-            </td><td><input type="text" name="district" id="district"></td></tr>
+            </td><td><input type="text" name="district" readonly id="district"></td></tr>
 
         <tr><td>State:
-            </td><td><input type="text" name="state" id="state"></td></tr>
+            </td><td><input type="text" name="state" readonly id="state"></td></tr>
 
         <tr><td>Pin:
-            </td><td><input type="text" name="pin" id="pin"></td></tr>
+            </td><td><input type="text" name="pin" readonly id="pin"></td></tr>
 
         <tr><td>Email:
-            </td><td><input type="text" name="email" id="email"></td></tr>
+            </td><td><input type="text" name="email" readonly id="email"></td></tr>
 
         <!--<tr><td><label for="dob" class="control-label">Date of birth</label></td>
-            <td><input type="date" name="dob" placeholder="YYYY-MM-DD" id="dob"  pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"/></td></tr>-->option
+            <td><input type="date" name="dob" placeholder="YYYY-MM-DD" id="dob"  pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"/></td></tr>-->
 
         <tr><td>Telephone:
             </td><td><input type="tel" name="phone_no" id="phone_no"></td></tr>
@@ -104,9 +104,9 @@
                 </select></td></tr>
 
         <tr><td>Gender:</td><td>
-                    <input type="radio" name="gender" value=1>male
-                    <input type="radio" name="gender" value=2>female
-                    <input type="radio" name="gender" value=3>other</td></tr>
+                <input type="radio" name="gender" value=1>male
+                <input type="radio" name="gender" value=2>female
+                <input type="radio" name="gender" value=3>other</td></tr>
 
 
         <tr><td>Category:</td><td>
@@ -137,26 +137,37 @@
                 <input type="radio" name="gov_emp" value=4>both</td></tr>
 
         <!--<tr><td>Date:
-            </td><td><input type="date" name="sub_date" placeholder="YYYY-MM-DD" id="sub_date"  pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"/></td></tr>;-->
-        <tr><td>  <input type="button" value="save" id="save"></td>
-            <td><input type="button" value="update" id="update"></td></tr>
+            </td><td><input type="date" name="sub_date" placeholder="YYYY-MM-DD" id="sub_date"  pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"/></td></tr> ;-->
+        <tr><td>  <input type="button" value="edit" name="edit" id="editButton"></td><td>
+                <input type="button" value="continue" name="continue" id="continueButton">
+            </td></tr>
+
     </form>
 </table>
+
 </body>
 <script>
-    $( "#save" ).click(function() {
-        alert("submit button is clicked");
-        document.getElementById("form1").action = "reg1_submit";
-        alert(document.getElementById('form1').action);
-        document.getElementById("form1").submit();
-    })
-    $( "#update" ).click(function() {
-        alert("update button is clicked");
+$( "#editButton" ).click(function() {
+    alert("edit button is clicked");
+    document.getElementById("form1").action = "update";
+alert(document.getElementById('form1').action);
+document.getElementById("form1").submit();
+})
+$( "#continueButton" ).click(function() {
+alert("continue button is clicked");
 
 // $("#form1").attr("action", "/continue");
-        document.getElementById("form1").action = "update_sub";
-        alert(document.getElementById('form1').action);
-        document.getElementById("form1").submit();
-    })
+document.getElementById("form1").action = "continue";
+alert(document.getElementById('form1').action);
+document.getElementById("form1").submit();
+
+})
 </script>
+
+<!--<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>-->
+
 </html>
