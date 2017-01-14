@@ -9,9 +9,9 @@
         $(document).ready(function(){
             var test= "<%=data%>";
             test = test.replace(/&#34;/g, '"');
-            alert(test);
+            //alert(test);
             test=JSON.parse(test);
-            alert(test.ename);
+            //alert(test.ename);
 
             var flag="<%= prev%>";
             if(flag==1){
@@ -33,7 +33,7 @@
                 $("[name=area]").val([test.area]);
                 $("[name=gov_emp]").val([test.gov_emp]);
                 $("[name=gender]").val([test.gender]);
-                $("#submit").hide();
+                $("#save").hide();
                 $("#update").show();
             }
             if(flag==0){
@@ -47,6 +47,7 @@
     </script>
 </head>
 <body>
+<h1>Registration form</h1><hr>
 <table>
     <form method="get"  name="form1" id="form1">
         <tr><td>Employee type</td>
@@ -85,7 +86,7 @@
             </td><td><input type="text" name="email" id="email"></td></tr>
 
         <!--<tr><td><label for="dob" class="control-label">Date of birth</label></td>
-            <td><input type="date" name="dob" placeholder="YYYY-MM-DD" id="dob"  pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"/></td></tr>-->option
+            <td><input type="date" name="dob" placeholder="YYYY-MM-DD" id="dob"  pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"/></td></tr>-->
 
         <tr><td>Telephone:
             </td><td><input type="tel" name="phone_no" id="phone_no"></td></tr>
@@ -147,7 +148,7 @@
     $( "#save" ).click(function() {
         alert("submit button is clicked");
         document.getElementById("form1").action = "reg1_submit";
-        alert(document.getElementById('form1').action);
+        //alert(document.getElementById('form1').action);
         document.getElementById("form1").submit();
     })
     $( "#update" ).click(function() {
@@ -155,8 +156,15 @@
 
 // $("#form1").attr("action", "/continue");
         document.getElementById("form1").action = "update_sub";
-        alert(document.getElementById('form1').action);
+        //alert(document.getElementById('form1').action);
         document.getElementById("form1").submit();
     })
+</script>
+<script>
+    history.pushState(null, null, document.URL);
+    window.addEventListener('popstate', function () {
+        history.pushState(null, null, document.URL);
+    });
+
 </script>
 </html>

@@ -40,13 +40,23 @@
                 $("[name=area]").val([test.area]);
                 $("[name=gov_emp]").val([test.gov_emp]);
                 $("[name=gender]").val([test.gender]);
+                $(':radio').click(function () {
+                    return false;
+                });
+                $('#emp_type').attr('disabled',true);
+                $('#qualification').attr('disabled',true);
+                $('#category').attr('disabled',true);
+                $('#program').attr('disabled',true);
+
+                }
             }
 
-        });
+        );
 
     </script>
 </head>
 <body>
+<h1>Preview Page</h1><hr>
 <table>
     <form method="get" name="form1" id="form1">
         <tr><td>Employee type</td>
@@ -162,6 +172,14 @@ alert(document.getElementById('form1').action);
 document.getElementById("form1").submit();
 
 })
+</script>
+
+<script>
+    history.pushState(null, null, document.URL);
+    window.addEventListener('popstate', function () {
+        history.pushState(null, null, document.URL);
+    });
+
 </script>
 
 <!--<script>
